@@ -3,3 +3,6 @@ CPackConfig.cmake
 cmake_install.cmake
 CPackSourceConfig.cmake
 CMakeFiles/
+.vs/
+.git/
+out/

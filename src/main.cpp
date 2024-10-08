@@ -1,16 +1,33 @@
-#include <raylib.h>
+#include "include/Game.hpp"
+
+#include <chrono>
 
 int main()
 {
-	InitWindow(800, 600, "LOL");
+	Game FNF(800, 600, "FNF-FanGame");
 
-	while(!WindowShouldClose())
+	constexpr std::chrono::nanoseconds framerate(16666667);
+	using clock = std::chrono::high_resolution_clock;
+
+	auto start = clock::now();
+	std::chrono::nanoseconds lag(0);
+
+	while (!FNF.GameShouldClose())
 	{
-		BeginDrawing();
-			ClearBackground(MAGENTA);
-		EndDrawing();
+		auto end = clock::now();
+		std::chrono::nanoseconds elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+
+		start = end;
+		lag += elapsed;
+
+		while (lag >= framerate)
+		{
+			FNF.Update();
+			lag -= framerate;
+		}
+
+		FNF.Render();
 	}
 
-	CloseWindow();
-	
+	FNF.CleanUp();
 }
