@@ -3,8 +3,8 @@ CPackConfig.cmake
 cmake_install.cmake
 CPackSourceConfig.cmake
 CMakeFiles/
+_deps/
 .vs/
 .git/
 out/
 Makefile
-_deps/
