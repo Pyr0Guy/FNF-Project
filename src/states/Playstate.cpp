@@ -6,6 +6,7 @@ Playstate Playstate::m_PlaystateState;
 
 void Playstate::Init()
 {
+	m_testObj = new Entity();
 }
 
 void Playstate::Destroy()
@@ -14,7 +15,6 @@ void Playstate::Destroy()
 
 void Playstate::Update(Game* game)
 {
-	std::cout << "fff" << std::endl;
 }
 
 void Playstate::Render()

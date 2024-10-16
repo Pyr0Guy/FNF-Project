@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameState.hpp"
+#include "../Entity.hpp"
 
 class Playstate
 	: public GameState
@@ -20,4 +21,6 @@ protected:
 	Playstate() {}
 private:
 	static Playstate m_PlaystateState;
+
+	Entity* m_testObj;
 };
