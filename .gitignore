@@ -6,3 +6,5 @@ CMakeFiles/
 .vs/
 .git/
 out/
+Makefile
+_deps/

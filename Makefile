@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/admin/GameFolder/FNF-FanGame
+CMAKE_SOURCE_DIR = /home/admin/disk2/projects/FNF-Project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/admin/GameFolder/FNF-FanGame
+CMAKE_BINARY_DIR = /home/admin/disk2/projects/FNF-Project
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -106,7 +106,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/admin/GameFolder/FNF-FanGame/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/admin/disk2/projects/FNF-Project/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -148,9 +148,9 @@ list_install_components/fast: list_install_components
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/admin/GameFolder/FNF-FanGame/CMakeFiles /home/admin/GameFolder/FNF-FanGame/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/admin/disk2/projects/FNF-Project/CMakeFiles /home/admin/disk2/projects/FNF-Project/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/admin/GameFolder/FNF-FanGame/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/admin/disk2/projects/FNF-Project/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -201,7 +201,7 @@ uninstall: cmake_check_build_system
 
 # fast build rule for target.
 uninstall/fast:
-	$(MAKE) -f raylib/CMakeFiles/uninstall.dir/build.make raylib/CMakeFiles/uninstall.dir/build
+	$(MAKE) -f _deps/raylib-build/CMakeFiles/uninstall.dir/build.make _deps/raylib-build/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
 #=============================================================================
@@ -214,7 +214,7 @@ raylib: cmake_check_build_system
 
 # fast build rule for target.
 raylib/fast:
-	$(MAKE) -f raylib/raylib/CMakeFiles/raylib.dir/build.make raylib/raylib/CMakeFiles/raylib.dir/build
+	$(MAKE) -f _deps/raylib-build/raylib/CMakeFiles/raylib.dir/build.make _deps/raylib-build/raylib/CMakeFiles/raylib.dir/build
 .PHONY : raylib/fast
 
 #=============================================================================
@@ -227,7 +227,7 @@ update_mappings: cmake_check_build_system
 
 # fast build rule for target.
 update_mappings/fast:
-	$(MAKE) -f raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make raylib/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
+	$(MAKE) -f _deps/raylib-build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make _deps/raylib-build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
 #=============================================================================
@@ -240,8 +240,35 @@ glfw: cmake_check_build_system
 
 # fast build rule for target.
 glfw/fast:
-	$(MAKE) -f raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make raylib/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
+	$(MAKE) -f _deps/raylib-build/raylib/external/glfw/src/CMakeFiles/glfw.dir/build.make _deps/raylib-build/raylib/external/glfw/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
+
+src/Game.o: src/Game.cpp.o
+
+.PHONY : src/Game.o
+
+# target to build an object file
+src/Game.cpp.o:
+	$(MAKE) -f CMakeFiles/FNF-FanGame.dir/build.make CMakeFiles/FNF-FanGame.dir/src/Game.cpp.o
+.PHONY : src/Game.cpp.o
+
+src/Game.i: src/Game.cpp.i
+
+.PHONY : src/Game.i
+
+# target to preprocess a source file
+src/Game.cpp.i:
+	$(MAKE) -f CMakeFiles/FNF-FanGame.dir/build.make CMakeFiles/FNF-FanGame.dir/src/Game.cpp.i
+.PHONY : src/Game.cpp.i
+
+src/Game.s: src/Game.cpp.s
+
+.PHONY : src/Game.s
+
+# target to generate assembly for a file
+src/Game.cpp.s:
+	$(MAKE) -f CMakeFiles/FNF-FanGame.dir/build.make CMakeFiles/FNF-FanGame.dir/src/Game.cpp.s
+.PHONY : src/Game.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -270,6 +297,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/FNF-FanGame.dir/build.make CMakeFiles/FNF-FanGame.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/states/Playstate.o: src/states/Playstate.cpp.o
+
+.PHONY : src/states/Playstate.o
+
+# target to build an object file
+src/states/Playstate.cpp.o:
+	$(MAKE) -f CMakeFiles/FNF-FanGame.dir/build.make CMakeFiles/FNF-FanGame.dir/src/states/Playstate.cpp.o
+.PHONY : src/states/Playstate.cpp.o
+
+src/states/Playstate.i: src/states/Playstate.cpp.i
+
+.PHONY : src/states/Playstate.i
+
+# target to preprocess a source file
+src/states/Playstate.cpp.i:
+	$(MAKE) -f CMakeFiles/FNF-FanGame.dir/build.make CMakeFiles/FNF-FanGame.dir/src/states/Playstate.cpp.i
+.PHONY : src/states/Playstate.cpp.i
+
+src/states/Playstate.s: src/states/Playstate.cpp.s
+
+.PHONY : src/states/Playstate.s
+
+# target to generate assembly for a file
+src/states/Playstate.cpp.s:
+	$(MAKE) -f CMakeFiles/FNF-FanGame.dir/build.make CMakeFiles/FNF-FanGame.dir/src/states/Playstate.cpp.s
+.PHONY : src/states/Playstate.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -289,9 +343,15 @@ help:
 	@echo "... raylib"
 	@echo "... update_mappings"
 	@echo "... glfw"
+	@echo "... src/Game.o"
+	@echo "... src/Game.i"
+	@echo "... src/Game.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/states/Playstate.o"
+	@echo "... src/states/Playstate.i"
+	@echo "... src/states/Playstate.s"
 .PHONY : help
 
 
