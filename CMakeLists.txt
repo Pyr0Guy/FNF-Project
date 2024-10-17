@@ -2,30 +2,38 @@ cmake_minimum_required(VERSION 3.15)
 project("FNF-FanGame")
 
 #Raylib
-set(RAYLIB_VESION "5.0.0")
+set(RAYLIB_VERSION 5.0)
 find_package(raylib ${RAYLIB_VESION} QUIET)
 
-if (NOT raylib_FOUND)
-	message(STATUS "Raylib not found lol, wait bro i install this shit for you")
+# Generate compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-	include(FetchContent)
-	
-	FetchContent_Declare(
+# Dependencies
+if (NOT raylib_FOUND) 
+
+    include(FetchContent)
+    FetchContent_Declare(
         raylib
-        GIT_REPOSITORY https://github.com/raysan5/raylib.git
-        GIT_TAG ${RAYLIB_VERSION}
+        DOWNLOAD_EXTRACT_TIMESTAMP OFF
+        URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
     )
 
-    FetchContent_MakeAvailable(raylib)
+    FetchContent_GetProperties(raylib)
+    if (NOT raylib_POPULATED)
+        set(FETCHCONTENT_QUIET NO)
+        FetchContent_MakeAvailable(raylib)
+        set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    endif()
+
 endif()
 
 #set(FILE_SHIT "src/main.cpp" "src/Game.cpp" "src/include/Game.cpp")
 file(GLOB FILE_SHIT 
     "src/*.cpp" 
-    "src/states/*.cpp"
+    "src/**/*.cpp"
     
     "src/include/*.hpp" 
-    "src/include/states/*.hpp"
+    "src/include/**/*.hpp"
 )
 
 set(CMAKE_CXX_STANDARD 17)
