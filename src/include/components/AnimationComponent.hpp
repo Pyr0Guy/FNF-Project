@@ -25,6 +25,7 @@ public:
 
     void SetAnimationSpeed(f32 speed);
 
+    std::string GetAnimation() const;
     bool IsAnimationExsists(std::string& name) const;
 private:
     s16 m_MaxFrames;

@@ -27,23 +27,25 @@ void Playstate::Update(Game* game)
 {
 	m_Registry.get<AnimationComponent>(testEnt).Update();
 
-	if(IsKeyPressed(1))
+	if(IsKeyPressed(KEY_Z))
 		m_Registry.get<AnimationComponent>(testEnt).Play("idle");
 	
-	if(IsKeyPressed(2))
+	if(IsKeyPressed(KEY_X))
 		m_Registry.get<AnimationComponent>(testEnt).Play("down");
 
-	if(IsKeyPressed(3))
+	if(IsKeyPressed(KEY_C))
 		m_Registry.get<AnimationComponent>(testEnt).Play("right");
 
-	if(IsKeyPressed(4))
+	if(IsKeyPressed(KEY_V))
 		m_Registry.get<AnimationComponent>(testEnt).Play("up");
 
-	if(IsKeyPressed(2))
+	if(IsKeyPressed(KEY_B))
 		m_Registry.get<AnimationComponent>(testEnt).Play("yeah");
 
-	if(IsKeyPressed(2))
+	if(IsKeyPressed(KEY_N))
 		m_Registry.get<AnimationComponent>(testEnt).Play("miss");
+
+	std::cout << m_Registry.get<AnimationComponent>(testEnt).GetAnimation() << std::endl;
 }
 
 void Playstate::Render()

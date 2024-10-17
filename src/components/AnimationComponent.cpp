@@ -103,3 +103,8 @@ bool AnimationComponent::IsAnimationExsists(std::string& name) const
 {
     return (m_Animations.find(name) != m_Animations.end());
 }
+
+std::string AnimationComponent::GetAnimation() const
+{
+    return m_curAnim;
+}
