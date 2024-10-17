@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameState.hpp"
-#include "../Entity.hpp"
+#include "../entt/entt.hpp"
 
 class Playstate
 	: public GameState
@@ -22,5 +22,6 @@ protected:
 private:
 	static Playstate m_PlaystateState;
 
-	Entity* m_testObj;
+	entt::registry m_Registry;
+	entt::entity testEnt;
 };

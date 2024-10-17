@@ -5,9 +5,6 @@ project("FNF-FanGame")
 set(RAYLIB_VERSION 5.0)
 find_package(raylib ${RAYLIB_VESION} QUIET)
 
-# Generate compile_commands.json
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 # Dependencies
 if (NOT raylib_FOUND) 
 
