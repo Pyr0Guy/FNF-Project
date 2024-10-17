@@ -21,7 +21,7 @@ public:
 
     void ChangeTexture(Texture2D& texture);
 
-    void Draw(const Vector2& pos); // Не знаю как его сделать
+    void Draw(const Vector2& pos);
 private:
     Texture2D m_Texture;
     f32 m_Scale;

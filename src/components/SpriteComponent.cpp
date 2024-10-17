@@ -38,8 +38,6 @@ void SpriteComponent::Rotate(f32 rotation)
 
 void SpriteComponent::ChangeTexture(Texture2D &texture)
 {
-    std::cout << texture.id << std::endl;
-
     if(texture.id != 0 && texture.id != m_Texture.id)
         UnloadTexture(m_Texture);
 
