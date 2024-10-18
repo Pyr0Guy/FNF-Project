@@ -4,8 +4,10 @@
 #include "../include/tinyxml2.h"
 
 AnimationComponent::AnimationComponent(const char *filename, f32 animationSpeed)
-    : m_AnimSpeed(animationSpeed), m_curAnim(""), m_MaxFrames(0), m_CurFrame(0.f)
+    : m_AnimSpeed(animationSpeed), m_curAnim(""), m_MaxFrames(0), m_CurFrame(0.f), m_Scale(1.f), m_Rotation(0.f)
 {
+    m_Origin = { 0.f, 0.f };
+
     {
         std::stringstream ss;
         ss << filename << ".png";
@@ -45,9 +47,24 @@ void AnimationComponent::SetAnimationSpeed(f32 speed)
     m_AnimSpeed = speed;
 }
 
+void AnimationComponent::SetScale(f32 scale)
+{
+    m_Scale = scale;
+}
+
+void AnimationComponent::SetRotation(f32 rotation)
+{
+    if(rotation >= 360.f)
+        rotation -= 360.f;
+
+    m_Rotation = rotation;
+}
+
 void AnimationComponent::Draw(const Vector2& pos)
 {
-    DrawTextureRec(m_Texture, m_CurFrameRect, pos, WHITE);
+    //DrawTextureRec(m_Texture, m_CurFrameRect, pos, WHITE);
+    Rectangle dest = { pos.x, pos.y, (float)m_CurFrameRect.width * m_Scale, (float)m_CurFrameRect.height * m_Scale };
+    DrawTexturePro(m_Texture, m_CurFrameRect, dest, m_Origin, m_Rotation, WHITE);
 }
 
 //Automatic loading of all animations
@@ -87,6 +104,14 @@ void AnimationComponent::LoadAllAnimations(std::string XMLPath)
     }
 }
 
+void AnimationComponent::Rotate(f32 amount)
+{
+    m_Rotation += amount;
+
+    if(m_Rotation >= 360.f)
+        m_Rotation = 0.f;
+}
+
 void AnimationComponent::Play(std::string animName)
 {
     if (IsAnimationExsists(animName) == false)
@@ -108,7 +133,17 @@ bool AnimationComponent::IsAnimationExsists(std::string& name) const
     return (m_Animations.find(name) != m_Animations.end());
 }
 
-std::string AnimationComponent::GetAnimation() const
+std::string AnimationComponent::GetCurrentAnimation() const
 {
     return m_curAnim;
+}
+
+std::vector<std::string> AnimationComponent::GetAllAnimations() const
+{
+    std::vector<std::string> animations;
+
+    for(const auto& animName : m_Animations)
+        animations.push_back(animName.first);
+
+    return animations;
 }

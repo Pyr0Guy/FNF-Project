@@ -23,4 +23,6 @@ private:
     Texture2D m_Texture;
     f32 m_Scale;
     f32 m_Rotation;
+
+    Vector2 m_Origin;
 };

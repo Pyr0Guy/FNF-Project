@@ -8,13 +8,22 @@
 
 Playstate Playstate::m_PlaystateState;
 
+std::vector<std::string> allTestAnim;
+int anim = 0;
+
 void Playstate::Init()
 {
 	testEnt = m_Registry.create();
 
-	m_Registry.emplace<PositionComponent>(testEnt, 30.f, 40.f);
-	m_Registry.emplace<AnimationComponent>(testEnt, "assets/images/testbuddy", 0.5f);
+	m_Registry.emplace<PositionComponent>(testEnt, 150.f, 150.f);
+	m_Registry.emplace<SpriteComponent>(testEnt,"assets/images/test.png");
+
+	/*
+	m_Registry.emplace<AnimationComponent>(testEnt, "assets/images/BOYFRIEND", 0.5f);
 	m_Registry.get<AnimationComponent>(testEnt).Play("idle");
+	m_Registry.get<AnimationComponent>(testEnt).SetScale(0.5f);
+	allTestAnim = m_Registry.get<AnimationComponent>(testEnt).GetAllAnimations();
+	*/
 }
 
 void Playstate::Destroy()
@@ -24,37 +33,51 @@ void Playstate::Destroy()
 
 void Playstate::Update(Game* game)
 {
+	/*
 	auto& osakaANim = m_Registry.get<AnimationComponent>(testEnt);
 
 	osakaANim.Update();
 
-	if (IsKeyDown(KEY_Z))
-		osakaANim.Play("idle");
+	osakaANim.Rotate(1.f);
 
-	if (IsKeyDown(KEY_X))
-		osakaANim.Play("up");
+	if(IsKeyPressed(KEY_RIGHT))
+	{
+		anim++;
 
-	if (IsKeyDown(KEY_C))
-		osakaANim.Play("down");
+		if(anim >= allTestAnim.size())
+			anim = 0;
 
-	if (IsKeyDown(KEY_V))
-		osakaANim.Play("right");
+		std::cout << allTestAnim[anim] << std::endl;
 
-	if (IsKeyDown(KEY_B))
-		osakaANim.Play("left");
+		osakaANim.Play(allTestAnim[anim]);
+	}
 
-	if (IsKeyDown(KEY_N))
-		osakaANim.Play("yeah");
+	if(IsKeyPressed(KEY_LEFT))
+	{
+		anim--;
 
-	if (IsKeyDown(KEY_M))
-		osakaANim.Play("miss");
+		if(anim < 0)
+			anim = allTestAnim.size() - 1;
 
-	//std::cout << m_Registry.get<AnimationComponent>(testEnt).GetAnimation() << std::endl;
+		std::cout << allTestAnim[anim] << std::endl;
+
+		osakaANim.Play(allTestAnim[anim]);
+	}
+	*/
+
+	auto& spr = m_Registry.get<SpriteComponent>(testEnt);
+
+	spr.Rotate(1.f);
 }
 
 void Playstate::Render()
 {
+	m_Registry.get<SpriteComponent>(testEnt).Draw(
+		m_Registry.get<PositionComponent>(testEnt).GetPosition()
+	);
+	/*
 	m_Registry.get<AnimationComponent>(testEnt).Draw(
 		m_Registry.get<PositionComponent>(testEnt).GetPosition()
 	);
+	*/
 }

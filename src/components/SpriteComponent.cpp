@@ -2,11 +2,10 @@
 #include "../include/components/SpriteComponent.hpp"
 
 SpriteComponent::SpriteComponent(const char* filepath)
+    : m_Scale(1.f), m_Rotation(0.f)
 {
     m_Texture = LoadTexture(filepath);
-    
-    m_Scale = 1.f;
-    m_Rotation = 0.f;
+    m_Origin = { 0.f, 0.f };
 }
 
 SpriteComponent::~SpriteComponent()
@@ -45,7 +44,9 @@ void SpriteComponent::ChangeTexture(Texture2D &texture)
 
 void SpriteComponent::Draw(const Vector2 &pos)
 {
-    DrawTextureEx(m_Texture, pos, m_Rotation, m_Scale, WHITE);
+    Rectangle source = { 0.0f, 0.0f, (float)m_Texture.width, (float)m_Texture.height };
+    Rectangle dest = { pos.x, pos.y, (float)m_Texture.width*m_Scale, (float)m_Texture.height*m_Scale };
+    DrawTexturePro(m_Texture, source, dest, m_Origin, m_Rotation, WHITE);
 }
 
 s32 SpriteComponent::GetWidth() const

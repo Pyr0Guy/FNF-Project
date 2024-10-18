@@ -1,0 +1,5 @@
+1. For AnimationComponent and SpriteComponent add different variants of 'm_Origin' like TOP_LEFT TOP_RIGHT CENTER and etc...
+2. Rewrite main loop for supporting my custom frame control
+3. Turn off closing window on ESC its fucking pissing me off
+4. Add FMOD interface for playing audio
+5. Write custom camera and it's properties
