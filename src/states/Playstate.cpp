@@ -1,11 +1,10 @@
+#include "../pch.hpp"
+
 #include "../include/states/Playstate.hpp"
 
 #include "../include/components/PositionComponent.hpp"
 #include "../include/components/SpriteComponent.hpp"
 #include "../include/components/AnimationComponent.hpp"
-
-#include <iostream>
-#include <raylib.h>
 
 Playstate Playstate::m_PlaystateState;
 
@@ -25,27 +24,32 @@ void Playstate::Destroy()
 
 void Playstate::Update(Game* game)
 {
-	m_Registry.get<AnimationComponent>(testEnt).Update();
+	auto& osakaANim = m_Registry.get<AnimationComponent>(testEnt);
 
-	if(IsKeyPressed(KEY_Z))
-		m_Registry.get<AnimationComponent>(testEnt).Play("idle");
-	
-	if(IsKeyPressed(KEY_X))
-		m_Registry.get<AnimationComponent>(testEnt).Play("down");
+	osakaANim.Update();
 
-	if(IsKeyPressed(KEY_C))
-		m_Registry.get<AnimationComponent>(testEnt).Play("right");
+	if (IsKeyDown(KEY_Z))
+		osakaANim.Play("idle");
 
-	if(IsKeyPressed(KEY_V))
-		m_Registry.get<AnimationComponent>(testEnt).Play("up");
+	if (IsKeyDown(KEY_X))
+		osakaANim.Play("up");
 
-	if(IsKeyPressed(KEY_B))
-		m_Registry.get<AnimationComponent>(testEnt).Play("yeah");
+	if (IsKeyDown(KEY_C))
+		osakaANim.Play("down");
 
-	if(IsKeyPressed(KEY_N))
-		m_Registry.get<AnimationComponent>(testEnt).Play("miss");
+	if (IsKeyDown(KEY_V))
+		osakaANim.Play("right");
 
-	std::cout << m_Registry.get<AnimationComponent>(testEnt).GetAnimation() << std::endl;
+	if (IsKeyDown(KEY_B))
+		osakaANim.Play("left");
+
+	if (IsKeyDown(KEY_N))
+		osakaANim.Play("yeah");
+
+	if (IsKeyDown(KEY_M))
+		osakaANim.Play("miss");
+
+	//std::cout << m_Registry.get<AnimationComponent>(testEnt).GetAnimation() << std::endl;
 }
 
 void Playstate::Render()

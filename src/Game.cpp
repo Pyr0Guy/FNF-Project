@@ -1,11 +1,12 @@
+#include "pch.hpp"
+
 #include "include/Game.hpp"
 #include "include/states/Playstate.hpp"
-
-#include <raylib.h>
 
 Game::Game(int Width, int Height, const char* title)
 {
 	SetConfigFlags(FLAG_WINDOW_HIGHDPI);
+	ChangeDirectory(GetApplicationDirectory());
 	InitWindow(Width, Height, title);
 
 	ChangeState(Playstate::getState());

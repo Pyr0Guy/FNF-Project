@@ -1,6 +1,5 @@
+#include "../pch.hpp"
 #include "../include/components/SpriteComponent.hpp"
-
-#include <iostream>
 
 SpriteComponent::SpriteComponent(const char* filepath)
 {

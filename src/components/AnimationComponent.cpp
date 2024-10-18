@@ -1,9 +1,7 @@
+#include "../pch.hpp"
+
 #include "../include/components/AnimationComponent.hpp"
 #include "../include/tinyxml2.h"
-
-#include <sstream>
-#include <fstream>
-#include <iostream>
 
 AnimationComponent::AnimationComponent(const char *filename, f32 animationSpeed)
     : m_AnimSpeed(animationSpeed), m_curAnim(""), m_MaxFrames(0), m_CurFrame(0.f)
@@ -91,6 +89,12 @@ void AnimationComponent::LoadAllAnimations(std::string XMLPath)
 
 void AnimationComponent::Play(std::string animName)
 {
+    if (IsAnimationExsists(animName) == false)
+    {
+        std::cout << "No such animation with name: " << animName << std::endl;
+        return;
+    }
+
     if(animName != m_curAnim)
     {
         m_curAnim = animName;

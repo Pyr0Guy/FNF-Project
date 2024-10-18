@@ -1,8 +1,5 @@
 #pragma once
 
-#include <raylib.h>
-#include "../types.hpp"
-
 class SpriteComponent
 {
 public:

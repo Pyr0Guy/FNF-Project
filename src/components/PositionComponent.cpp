@@ -1,3 +1,5 @@
+#include "../pch.hpp"
+
 #include "../include/components/PositionComponent.hpp"
 
 void PositionComponent::SetPosition(Vector2 newPos)

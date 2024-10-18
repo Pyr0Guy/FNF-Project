@@ -1,13 +1,5 @@
 #pragma once
 
-#include <raylib.h>
-
-#include "../types.hpp"
-
-#include <vector>
-#include <unordered_map>
-#include <string>
-
 class AnimationComponent
 {
 private:
